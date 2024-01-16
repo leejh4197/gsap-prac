@@ -37,6 +37,22 @@
       font-size: 120px;
       text-transform: uppercase;
     }
+    .con01 audio {
+      position: absolute;
+      top: 0;
+    }
+    .con01 img {
+      width: 25px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      fill: coral;
+      transition: fill 0.3s ease;
+    }
+    .con01 h2 {
+      -webkit-text-stroke: 2px #487b77;
+    }
     .con01 .title span {
       -webkit-text-stroke: 2px coral;
       color: transparent;
@@ -118,7 +134,11 @@
         <video autoplay muted loop>
           <source src="./vdo.mp4" type="video/mp4" />
         </video>
-        <h2 class="title"><span>Gsap</span>ScrollTrigger</h2>
+        <img id="toggleButton" src="./music.svg" />
+        <audio id="backgroundMusic" loop>
+          <source src="./bg.mp3" type="audio/mp3" />
+        </audio>
+        <h2 class="title"><span>enjoy</span>every moment</h2>
       </section>
       <section class="con02">
         <h2 class="contitle">section2</h2>
@@ -202,6 +222,19 @@
           .fromTo(".con03 img.c", { y: "400%" }, { y: "-100" }, 1.6)
           .fromTo(".con03 img.d", { y: "400%" }, { y: "-100" }, 1.8)
           .fromTo(".con03 img.e", { y: "400%" }, { y: "-100" }, 2);
+      });
+    </script>
+    <script>
+      var audio = document.getElementById("backgroundMusic");
+      var toggleButton = document.getElementById("toggleButton");
+
+      toggleButton.addEventListener("click", function () {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+          toggleButton.color = "red";
+        }
       });
     </script>
   </body>
