@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gsap_scrollTrigger_prac</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/ScrollTrigger.min.js"></script>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      list-style: none;
+    }
+    section {
+      position: relative;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    section video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .con01 .title {
+      font-size: 120px;
+      text-transform: uppercase;
+    }
+    .con01 .title span {
+      -webkit-text-stroke: 2px coral;
+      color: transparent;
+      display: block;
+      line-height: 1.1;
+    }
+    .con02 {
+      background-color: #487b77;
+    }
+    .con02 ul {
+      display: flex;
+      width: 70%;
+      justify-content: space-between;
+      color: black;
+      font-weight: bold;
+    }
+    .con02 .contitle {
+      position: absolute;
+      -webkit-text-stroke: 2px coral;
+      color: transparent;
+      font-size: 100px;
+    }
+    .con02 ul img {
+      width: 22%;
+      height: 300px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      object-fit: cover;
+    }
+    .con03 {
+      position: relative;
+      overflow: hidden;
+      background-color: #487b77;
+    }
+    .con03 .contitle {
+      -webkit-text-stroke: 2px coral;
+      color: transparent;
+      font-size: 100px;
+    }
+    .con03 img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      align-items: center;
+      display: block;
+      width: 250px;
+      height: 350px;
+      background-color: bisque;
+      color: #23282a;
+      display: flex;
+      justify-content: center;
+      border-radius: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      object-fit: cover;
+    }
+    .con03 img.a {
+      transform: translate(-50%, -50%) rotate(-12deg);
+    }
+    .con03 img.b {
+      transform: translate(-50%, -50%) rotate(12deg);
+    }
+    .con03 img.c {
+      transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    .con03 img.d {
+      transform: translate(-50%, -50%) rotate(18deg);
+    }
+    .con03 img.e {
+      transform: translate(-50%, -50%) rotate(-3deg);
+    }
+  </style>
+  <body>
+    <div class="wrap">
+      <section class="con01">
+        <video autoplay muted loop>
+          <source src="./vdo.mp4" type="video/mp4" />
+        </video>
+        <h2 class="title"><span>Gsap</span>ScrollTrigger</h2>
+      </section>
+      <section class="con02">
+        <h2 class="contitle">section2</h2>
+        <ul>
+          <img src="./1.jpg" />
+          <img src="./4.jpg" />
+          <img src="./7.jpg" />
+          <img src="./6.png" />
+        </ul>
+      </section>
+      <section class="con03">
+        <h2 class="contitle">section03</h2>
+        <img src="./8.jpg" class="a" />
+        <img src="./7.jpg" class="b" />
+        <img src="./6.png" class="c" />
+        <img src="./5.jpg" class="d" />
+        <img src="./4.jpg" class="e" />
+      </section>
+    </div>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+      console.log($);
+      $(function () {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: ".con02 ul",
+              start: "top 90%",
+              end: "20% 100%",
+              scrub: 2,
+              // markers: true,
+            },
+          })
+          .to(
+            ".con02 img:nth-child(1)",
+            {
+              y: "-400px",
+              duration: 1,
+              ease: "none",
+            },
+            0.2
+          )
+          .to(
+            ".con02 img:nth-child(2)",
+            {
+              y: "-400px",
+              duration: 1,
+              ease: "none",
+            },
+            0.4
+          )
+          .to(
+            ".con02 img:nth-child(3)",
+            {
+              y: "-400px",
+              duration: 1,
+              ease: "none",
+            },
+            0.6
+          )
+          .to(
+            ".con02 img:nth-child(4)",
+            {
+              y: "-400px",
+              duration: 1,
+              ease: "none",
+            },
+            0.8
+          );
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: ".con03",
+              start: "top 100%",
+              end: "100% 100%",
+              scrub: 2,
+            },
+          })
+          .fromTo(".con03 img.a", { y: "400%" }, { y: "-100" }, 1.2)
+          .fromTo(".con03 img.b", { y: "400%" }, { y: "-100" }, 1.4)
+          .fromTo(".con03 img.c", { y: "400%" }, { y: "-100" }, 1.6)
+          .fromTo(".con03 img.d", { y: "400%" }, { y: "-100" }, 1.8)
+          .fromTo(".con03 img.e", { y: "400%" }, { y: "-100" }, 2);
+      });
+    </script>
+  </body>
+</html>
